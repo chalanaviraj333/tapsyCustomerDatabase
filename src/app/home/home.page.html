@@ -1,0 +1,129 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Customers
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="homecontent">
+
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Customer Name</ion-label>
+      <ion-input type="text" ngModel name="customerName" clearInput required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="primary">Email</ion-label>
+      <ion-input type="email" ngModel name="email" clearInput></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="primary">Phone Number</ion-label>
+      <ion-input type="text" clearInput></ion-input>
+    </ion-item>
+
+    <ion-list>
+      <ion-radio-group>
+        <ion-list-header>
+          <ion-label color="primary">Customer Type</ion-label>
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label>Residential</ion-label>
+          <ion-radio slot="start" value="Residential"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Business</ion-label>
+          <ion-radio slot="start" value="Business"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Real Estate</ion-label>
+          <ion-radio slot="start" value="Real Estate"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Automotive</ion-label>
+          <ion-radio slot="start" value="Automotive"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Car Sale</ion-label>
+          <ion-radio slot="start" value="Car Sale"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <h4 class="hduhau">How did you hear about us?</h4>
+    <ion-segment scrollable color="primary">
+      <ion-segment-button value="google">
+        <ion-label>Google</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="friend">
+        <ion-label>WOM</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="dealer">
+        <ion-label>Dealer</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="driving">
+        <ion-label>Driving</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="youtube">
+        <ion-label>Youtube</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="facebook">
+        <ion-label>Facebook</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-card>
+
+        <ion-item>
+          <ion-label color="primary">Car Brand</ion-label>
+          <ion-select okText="Okay" cancelText="Dismiss" ngModel name="brand" (ionChange)="onChangeBrand($event)"
+            required>
+            <ion-select-option *ngFor="let carbrand of carbrands" [value]="selectedbrand">{{carbrand}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label color="primary">Car Model</ion-label>
+          <ion-select okText="Okay" cancelText="Dismiss" ngModel name="model" (ionChange)="onChangeModel($event)" required>
+            <ion-select-option *ngFor="let carmodel of carmodels" [value]="selectedmodel">{{carmodel}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+      
+        <ion-button class="addCarButton" (click)="addCarclicked()" expand="block" shape="round">ADD CAR</ion-button>
+
+        <ion-label class="errorMessage">{{wrongCarEntry}}</ion-label>
+
+    </ion-card>
+
+    <ion-card>
+      <ion-item *ngFor="let addedcar of addedcars" lines="none">
+        <ion-grid>
+          <ion-row no-padding>
+            <ion-col size="6">
+              <ion-label>{{addedcar.brand}}</ion-label>
+            </ion-col>
+            <ion-col size="6">
+              <ion-label>{{addedcar.model}}</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-card>
+
+    <ion-button class="doneButton" type="submit" expand="block" shape="round">Add Customer</ion-button>
+
+  </form>
+  </div>
+
+
+
+</ion-content>
